@@ -1,0 +1,32 @@
+
+#### UPLOAD_IMAGES_ADDRESS 【图片上传服务地址】
+-LT : http://192.168.1.106:8008
+-WT : http://wt-upload.imgs.wn518.com
+-PT : http://upload.imgs.wn518.com/upload_webp_images_j.wn
+-3W : http://upload.imgs.wn518.com/upload_webp_images_j.wn
+
+
+#### WN_CONFIG_HOME	 		【数据库配置文件】
+-WINDOS :　E:\config
+-LINUX  :　/etc/wn_config_home
+
+
+#### WN_SOKET_ADDRESS 		【权限访问地址】
+-唯一地址： 123.56.98.160
+
+#### WN_SOKET_PORT 			【权限访问接口】
+-唯一端口:  2225
+
+
+#### CURL_JAVA_URL BAT		【项目对接JAVA接口服务】
+
+-LT : https://lt-account.wn518.com/api/v1/
+-WT : https://wt-account.wn518.com/api/v1/
+-PT : https://pt-account.wn518.com/api/v1/
+-3W : https://account.wn518.com/api/v1/
+
+
+### GOODS_ADDRESS           【搜索服务】
+-LT : http://lt-search.ys.wn518.com
+-WT : http://wt-search.ys.wn518.com
+-3W : http://search.ys.wn518.com

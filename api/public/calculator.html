@@ -1,0 +1,116 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>利润计算</title>
+    <script language="JavaScript" src="./js/jquery.1.11.3.min.js"></script>
+    <link rel="stylesheet" href="./css/Bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/Bootstrap/dist/bootstrapValidator.css" />
+    <link rel="stylesheet" href="./css/my.css" />
+    <link rel="stylesheet" href="./css/Validform/Validform.css}" />
+</head>
+<script type="text/javascript">
+    var i = 3;
+    function add(){
+        i++;
+        var table = $('#tableAdd');
+        var tr = "<tr>" +
+                "<td><input type='text' name='D"+i+"' placeholder='D"+i+"' style='width: 150px;height: 50px;'></td>" +
+                "<td><input type='text' name='a"+i+"' placeholder='请输入数字' style='width: 150px;height: 50px;'></td>" +
+                "<td><input type='text' name='b"+i+"' placeholder='请输入数字' style='width: 150px;height: 50px;'></td>" +
+                "<td><input type='text' name='c"+i+"' placeholder='请输入数字' style='width: 150px;height: 50px;'></td>" +
+                "</tr>"
+        table.append(tr);
+    }
+    function count(){
+        var aa =  new Array();
+        var bb =  new Array();
+        var cc =  new Array();
+        for(var a=1;a<=i;a++){
+            aa[a-1] =  $("input[name = 'a"+a+"']").val();
+            bb[a-1] =  $("input[name = 'b"+a+"']").val();
+            cc[a-1] =  $("input[name = 'c"+a+"']").val();
+        }
+        var res1 = 0;
+        for(var a=1;a<=i;a++){
+            if(Number(aa[a-1])>=0 && Number(cc[a-1])>=0){
+                res1 += Number(aa[a-1])*Number(cc[a-1]);
+            }
+        }
+        var res2 = 0;
+        for(var a=1;a<=i;a++){
+            if(Number(aa[a-1])>=0 && Number(bb[a-1])>=0){
+                res2 += Number(aa[a-1])*Number(bb[a-1]);
+            }
+        }
+        var res3 = 0;
+        for(var a=1;a<=i;a++){
+            if(Number(aa[a-1])>=0){
+                res3 += Number(aa[a-1]);
+            }
+        }
+        var res4 = 0;
+        if(res1 && res2){
+            res4 = (Number(res1) - Number(res2))/Number(res2)*100;
+        }
+        var res5 = 0;
+        if(res2 && res3){
+            res5 = Number(res2)/Number(res3);
+        }
+        $('.percent').html(res4.toFixed(2)+'%');
+        $('.average').html(res5.toFixed(2));
+    }
+</script>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><h1><label>利润计算器</label></h1></h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <td width="50%" colspan="2" style="text-align: center;"><a  onclick="add()" class="btn btn-info btn-lg"><h1>添加sku</h1></a></td>
+                <td colspan="2" style="text-align: center;"><a onclick="count()" class="btn btn-info btn-lg"><h1>利润试算</h1></a></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table id="tableAdd" class="table" style="text-align: center;">
+                        <tr>
+                            <td width="25%"><h1><label>sku</label></h1></td>
+                            <td width="25%"><h1><label>数量</label></h1></td>
+                            <td width="25%"><h1><label>成本价</label></h1></td>
+                            <td><h1><label>售价</label></h1></td>
+                        </tr>
+                        <tr>
+                            <td><input type='text' name='D1"' placeholder='D1' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='a1' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='b1' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='c1' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type='text' name='D2' placeholder='D2' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='a2' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='b2' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='c2' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type='text' name='D3' placeholder='D3' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='a3' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='b3' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                            <td><input type='text' name='c3' placeholder='请输入数字' style="width: 150px;height: 50px;"></td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+            <tr style="text-align: center;">
+                <td></td>
+                <td><h1><label>利润率：<span class="percent">0%</span></label></h1></td>
+                <td><h1><label>平均成本：<span class="average">0</span></label></h1></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
