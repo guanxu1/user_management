@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ URL::asset('/css/Bootstrap/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('/css/my.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('/css/Validform/Validform.css') }}" />
+
     <script type="text/javascript">
         $(function(){
              $(".registerform").Validform();
@@ -41,27 +42,23 @@
                 <li class="active">
                     <a href="#"><i class="glyphicon glyphicon-th-large"></i>首页</a>
                 </li>
-                <li>
-                    <a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse">
-                        <i class="glyphicon glyphicon-cog"></i>系统管理<span class="pull-right glyphicon glyphicon-chevron-down"></span>
-                    </a>
-                    <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i>模块管理</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="./plans.html">
-                        <i class="glyphicon glyphicon-credit-card"></i>
-                        物料管理
-                    </a>
-                </li>
+                @foreach(session::get("modules") as $val)
+                    <li>
+                        <a href="#systemSetting{{$val["id"]}}" class="nav-header collapsed" data-toggle="collapse">
+                            <i class="glyphicon glyphicon-cog"></i>{{$val["name"]}}<span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                            <ul id="systemSetting{{$val["id"]}}" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                                @foreach($val["modules_list"] as $val2)
+                                    <li><a href="@if(!empty($val2["url"])){{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN."\\".$val2["url"]) }}@endif"><i class="glyphicon glyphicon-user"></i>{{$val2["name"]}}</a></li>
+                                @endforeach
+                            </ul>
+                    </li>
+                @endforeach
             </ul>
         </div>
-        <div class="col-md-10">
-            <div class="panel panel-primary margin10" style="float:left;width:75%">
-                <div class="panel-heading">
-                    <h3 class="panel-title wrfont16" id="right_title">系统结构</h3>
-                </div>
+        <div class="col-md-10" style="padding-left:0px;">
+            <div class="panel panel-primary margin10" style="float:left;width:100%;min-height:650px;border-color:#3C4049;">
+                <div class="panel-heading" style="background-color: #3C4049;">&nbsp;</div>
                 <div class="panel-body">
 
 

@@ -1,28 +1,24 @@
 @include(''.\App\Utils\ConstantUtil::PROJECT_ADMIN.'.public.header')
-<div class="panel panel-primary margin10" style="float:left;width:80%;">
-    <div class="panel-heading">
-        <h3 class="panel-title wrfont16" id="right_title">扩展模块  > 多窗口</h3>
-    </div>
-    <div class="panel-body">
-    <div style="float:left;width:100%">
-        <form action="" method="post" id="form1"  >
-            <div class="form-group width50">
-                <label for="exampleInputEmail1">窗口名称：</label>
-                <input type="text" class="form-control"  placeholder="分类名称" name="name">
-            </div>
-            <div class="form-group width50">
-                <label for="exampleInputEmail1">调用模板：</label>
-                <input type="text" class="form-control"  placeholder="调用模板" name="blade">
-            </div>
-            <div class="form-group width50">
-                <label for="exampleInputEmail1">回调Function：</label>
-                <input type="text" class="form-control"  placeholder="JS方法" name="return">
-            </div>
-            <div class="form-group width50">
-                <label for="exampleInputEmail1">执行Function：</label>
-                <input type="text" class="form-control"  placeholder="PHP方法" name="execute">
-            </div>
-            <button type="submit" class="btn btn-primary">保存</button>
-        </form>
-    </div>
-    @include(''.\App\Utils\ConstantUtil::PROJECT_ADMIN.'.public.footer')
+
+<div style="float:left;width:100%">
+    <form action="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@add') }}" method="post" id="form1" class="registerform"  >
+        <div class="form-group width50">
+            <label for="exampleInputEmail1">模块名称：</label>
+            <input type="text" class="form-control"  placeholder="模块名称" name="name" datatype="*"  nullmsg="模块名称不可为空！" errormsg="请输入0~8个汉字">
+        </div>
+        <div class="form-group width50">
+            <label for="exampleInputEmail1">Url：</label>
+            <input type="text" class="form-control"  placeholder="Url" name="url" datatype="*"  nullmsg="Url不可为空！" errormsg="请输正确URL" >
+        </div>
+        <div class="form-group width50">
+            <label for="exampleInputEmail1">归属分类：</label>
+            <select class="form-control width50 " name="classify" id="class_relation">
+                @foreach($list as $val)
+                    <option value="{{$val["id"]}}">{{$val["name"]}}</option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+</div>
+@include(''.\App\Utils\ConstantUtil::PROJECT_ADMIN.'.public.footer')

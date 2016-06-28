@@ -1,13 +1,13 @@
-<link href="{{ URL::asset('/css/Bootstrap/textarea/bootstrap-combined.no-icons.min.css?123') }}" rel="stylesheet">
-<link href="{{ URL::asset('/css/Bootstrap/textarea/bootstrap-responsive.min.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('/css/Bootstrap/textarea/font-awesome.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/css/Bootstrap/textarea/index.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ URL::asset('/css/Bootstrap/textarea/font-awesome.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('/css/Bootstrap/textarea/bootstrap-combined.no-icons.min.css?123') }}" rel="stylesheet">
+
 <script language="JavaScript" src="{{ URL::asset('/js/Bootstrap/textarea/bootstrap-wysiwyg.js') }}" type="text/javascript"></script>
 <script language="JavaScript" src="{{ URL::asset('/js/Bootstrap/textarea/jquery.hotkeys.js') }}" type="text/javascript"></script>
 <style>
     #editor {overflow:scroll; max-height:300px}
 </style>
-<div class="container">
+<div class="container" style="width:100%">
     <div class="hero-unit">
         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
             <div class="btn-group">

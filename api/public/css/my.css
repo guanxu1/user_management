@@ -137,3 +137,17 @@
     color: #4A515B;
     text-align: center;
 }
+
+
+.role-relation-modules {
+	border: 1px rgba(181, 181, 197, 0.59)  solid;
+	margin:10px;
+	padding:10px;
+}
+
+.role-relation-modules-func{
+	margin-top:10px;
+}
+.role-relation-modules-func label{
+	margin-right:5px;
+}

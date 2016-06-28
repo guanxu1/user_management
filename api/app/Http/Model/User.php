@@ -6,8 +6,8 @@ use DB;
 class User extends  Model{
 
 
-    protected $connection = 'weinong_user';
-    protected $table = 'classify';
-
+    protected $connection = 'user';
+    protected $table = 'user';
+    public $timestamps = false;
 
 }

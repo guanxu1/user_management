@@ -1,5 +1,5 @@
 <?php
-namespace  App\Http\Controllers\Cms;
+namespace  App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Market;
 use App\Http\Model\Subsection;
