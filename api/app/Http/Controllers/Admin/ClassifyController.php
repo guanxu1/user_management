@@ -1,8 +1,9 @@
 <?php
 namespace  App\Http\Controllers\Admin;
 use App\Http\Model\Classify;
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Utils\ConstantUtil;
+use Illuminate\Support\Facades\URL;
 
 Class ClassifyController extends Controller {
 
@@ -13,6 +14,7 @@ Class ClassifyController extends Controller {
         return $view;
 
     }
+
 
     public function add(Request $request) {
 

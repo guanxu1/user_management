@@ -1,38 +1,29 @@
 <?php
 
 namespace App\Http\Middleware;
-use App\Http\Model\Classify;
+use App\Http\Controllers\Admin\FunctionController;
 use App\Http\Model\Modules;
 use App\Utils\ConstantUtil;
 use Closure;
+use Illuminate\Support\Facades\URL;
 use Session;
 class AllowOrigin
 {
-
     public function handle($request, Closure $next) {
+        /**
+         * 模块权限未做完  需要认证URL地址
+         */
+        $user = Session::get("user");
+        if(empty($user)) FunctionController::errorView(URL::action(ConstantUtil::PROJECT_ADMIN.'\LoginController@login'),'请登录！');
+        $modules = Session::get("modules");
+        $url = FunctionController::getUrl();
+        if(!empty($modules["function"])) {
 
-        $modules = $this->getModules();
-        session::put("modules",$modules);
-        return $next($request);
-    }
 
 
-    /**
-     * 获取模块信息
-     * @return array
-     *
-     */
-    public function getModules() {
-        $result = [];
-        $classify = Classify::getClassify();
-        foreach($classify as $val) {
-            $modules = Modules::where("classify_id","=",$val["id"])->where("status","=",ConstantUtil::GLOBAL_TRUE)->get()->toArray();
-            $val["modules_list"] = $modules;
-            $result[] = $val;
         }
-        return $result;
+        return $next($request);
+
     }
-
-
 
 }

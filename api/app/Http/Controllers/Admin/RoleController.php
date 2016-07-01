@@ -18,10 +18,22 @@ Class RoleController extends Controller {
         return $view;
     }
 
-    public function add() {
+    public function add(Request $request) {
 
+        $name = $request->input("name");
+        $data["name"] = $name;
+        $data["status"] = ConstantUtil::GLOBAL_TRUE;
+        $data["create_time"] = date("Y-m-d H:i:s");
+        $result = Role::insert($data);
+        if(empty($result)) {
+            FunctionController::errorView(URL::action(ConstantUtil::PROJECT_ADMIN.'\RoleController@index'),'添加失败！');
+        } else {
+            FunctionController::successView(URL::action(ConstantUtil::PROJECT_ADMIN.'\RoleController@index'),'添加成功！');
+        }
 
     }
+
+
 
     public function addView() {
 

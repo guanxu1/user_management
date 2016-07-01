@@ -19,18 +19,10 @@
 <body>
 
 <nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-
+    <div class="container" style="width: 100%;padding:0;">
+        <div class="navbar-collapse collapse" style="width: 100%;padding:0;">
+            <ul class="nav navbar-nav" style="width: 100%">
+                <li class="active" style="float:right"><a style="background-color:rgba(92, 173, 136, 0.92)" href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\LoginController@quit') }}">退 出</a></li>
             </ul>
         </div>
     </div>
@@ -40,20 +32,32 @@
         <div class="col-md-2">
             <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
                 <li class="active">
-                    <a href="#"><i class="glyphicon glyphicon-th-large"></i>首页</a>
+                    <a style="cursor:pointer" href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\IndexController@index') }}"><i class="glyphicon glyphicon-th-large"></i>首页</a>
                 </li>
-                @foreach(session::get("modules") as $val)
+                @if(!empty(Session::get("modules")))
+                @foreach(Session::get("modules")["modules"] as $val)
                     <li>
                         <a href="#systemSetting{{$val["id"]}}" class="nav-header collapsed" data-toggle="collapse">
                             <i class="glyphicon glyphicon-cog"></i>{{$val["name"]}}<span class="pull-right glyphicon glyphicon-chevron-down"></span>
                         </a>
-                            <ul id="systemSetting{{$val["id"]}}" class="nav nav-list collapse secondmenu" style="height: 0px;">
-                                @foreach($val["modules_list"] as $val2)
-                                    <li><a href="@if(!empty($val2["url"])){{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN."\\".$val2["url"]) }}@endif"><i class="glyphicon glyphicon-user"></i>{{$val2["name"]}}</a></li>
+                        <ul id="systemSetting{{$val["id"]}}" class="nav nav-list secondmenu collapse "  >
+                                @foreach($val["list"] as $val2)
+                                    <li><a id="color-eee{{$val["id"]}}-{{$val2["id"]}}" href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@select',["id"=>$val2["id"]]) }}"><i class="glyphicon glyphicon-user "></i>{{$val2["name"]}}</a></li>
+                                @if(!empty($val2["url"]))
+                                    @if( $val2["id"] == Session::get("select"))
+                                        <script>
+                                            $(document).ready(function(){
+                                                $("#systemSetting{{$val["id"]}}").addClass("in");
+                                                $("#color-eee{{$val["id"]}}-{{$val2["id"]}}").addClass("color-eee");
+                                            });
+                                        </script>
+                                    @endif
+                                @endif
                                 @endforeach
                             </ul>
                     </li>
                 @endforeach
+                @endif
             </ul>
         </div>
         <div class="col-md-10" style="padding-left:0px;">

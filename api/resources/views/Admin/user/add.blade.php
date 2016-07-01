@@ -15,11 +15,11 @@
             </div>
             <div class="form-group width50">
                 <label for="exampleInputEmail1">电话号码：</label>
-                <input type="text" class="form-control"  placeholder="电话号码" name="mobile">
+                <input type="text" class="form-control"  placeholder="电话号码1~11位" name="mobile" datatype="m"  ignore="ignore"  errormsg="手机号码格式不对！">
             </div>
             <div class="form-group width50">
                 <label for="exampleInputEmail1">真实姓名：</label>
-                <input type="text" class="form-control"  placeholder="真实姓名" name="name">
+                <input type="text" class="form-control"  placeholder="真实姓名" name="name" >
             </div>
             <div class="form-group width50">
                 <label for="exampleInputEmail1">权限：</label>

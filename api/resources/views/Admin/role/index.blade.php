@@ -1,6 +1,6 @@
 @include(''.\App\Utils\ConstantUtil::PROJECT_ADMIN.'.public.header')
 <div >
-    <button type="button" class="btn btn-primary" onclick="window.location.href='{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@addView') }}'">添加分类</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@addView') }}'">添加角色</button>
     <br>
     <br>
     <table id="sample-table-1" class="table table-striped table-bordered table-hover wrfont14">
