@@ -10,19 +10,29 @@ Route::group(array('middleware' => 'valid'), function() {
     Route::any("/admin/modules/add/view"        , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@addView');
     Route::any("/admin/modules/add"             , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@add');
     Route::any("/admin/modules/index"           , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@index');
-    Route::any("/admin/classify/index"          , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@index');
-    Route::any("/admin/classify/add/view"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@addView');
-    Route::any("/admin/classify/add"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@add');
+
     Route::any("/admin/modules/func/add/view"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@funcAddView');
     Route::any("/admin/modules/func/add"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@funcAdd');
     Route::any("/admin/modules/func/delete"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@funcDelete');
     Route::any("/admin/modules/func/editor"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ModulesController@funcEditor');
     /**
+     * 分类管理
+     */
+    Route::any("/admin/classify/index"          , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@index');
+    Route::any("/admin/classify/add/view"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@addView');
+    Route::any("/admin/classify/add"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@add');
+    Route::any("/admin/classify/editor/view"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@editorView');
+    Route::any("/admin/classify/editor"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@editor');
+    Route::any("/admin/classify/delete"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@delete');
+    /**
      * 角色管理
      */
     Route::any("/admin/role/index"                              , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@index');
-    Route::any("/admin/classify/add"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@add');
-    Route::any("/admin/classify/add/view"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@addView');
+    Route::any("/admin/role/add"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@add');
+    Route::any("/admin/role/add/view"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@addView');
+    Route::any("/admin/role/editor/view"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@addView');
+    Route::any("/admin/role/editor"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@addView');
+    Route::any("/admin/role/delete"            , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@addView');
     Route::any("/admin/role/relation/editor/view"               , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@relationEditorView');
     Route::any("/admin/role/relation/editor"                    , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@relationEditor');
     Route::any("/admin/role/relation/user/view"                    , \App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@userEditor');

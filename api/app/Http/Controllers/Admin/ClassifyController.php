@@ -41,5 +41,28 @@ Class ClassifyController extends Controller {
     }
 
 
+    public function editorView(Request $request) {
+        $id = $request->input("id");
+        if(empty($id)) return '';
+        $list = Classify::where("id","=",$id)->first()->toArray();
+        $view = view(ConstantUtil::PROJECT_ADMIN.'/classify/editor')->with("list",$list);
+        return $view;
+
+    }
+    public function editor(Request $request) {
+        $id = $request->input("id");
+        $name = $request->input("name");
+        if(empty($id)) return '';
+        Classify::where("id","=",$id)->update(["name"=>$name]);
+        FunctionController::successView(URL::action(ConstantUtil::PROJECT_ADMIN.'\ClassifyController@index'),'添加成功！');
+
+    }
+    public function delete(Request $request) {
+        $id = $request->input("id");
+        if(empty($id)) return '';
+        Classify::where("id","=",$id)->delete();
+        FunctionController::successView(URL::action(ConstantUtil::PROJECT_ADMIN.'\ClassifyController@index'),'删除成功！');
+    }
+
 
 }

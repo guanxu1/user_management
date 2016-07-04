@@ -8,7 +8,7 @@
         <tr>
             <th>ID</th>
             <th>角色名称</th>
-            <th width="200px">操作</th>
+            <th width="300px">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -17,8 +17,10 @@
                 <td>{{$val["id"]}}</td>
                 <td>{{$val["name"]}}</td>
                 <td>
+                    <a href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@relationEditorView',["id"=>$val["id"]]) }}" class="btn btn-primary btn-sm">编辑</a>
                     <a href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@userEditorView',["id"=>$val["id"]]) }}" class="btn btn-primary btn-sm">分配用户</a>
                     <a href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@relationEditorView',["id"=>$val["id"]]) }}" class="btn btn-warning btn-sm">模块权限</a>
+                    <a href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\RoleController@relationEditorView',["id"=>$val["id"]]) }}" class="btn btn-danger btn-sm">删除</a>
                 </td>
             </tr>
             @endforeach

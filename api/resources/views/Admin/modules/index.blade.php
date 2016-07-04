@@ -41,7 +41,6 @@
                                 </tr>
                             @endforeach
                             </table>
-
                         </div>
                     </div>
                 </td>

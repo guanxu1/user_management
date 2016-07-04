@@ -16,11 +16,7 @@ class AllowOrigin
         $user = Session::get("user");
         if(empty($user)) FunctionController::errorView(URL::action(ConstantUtil::PROJECT_ADMIN.'\LoginController@login'),'请登录！');
         $modules = Session::get("modules");
-        $url = FunctionController::getUrl();
         if(!empty($modules["function"])) {
-
-
-
         }
         return $next($request);
 

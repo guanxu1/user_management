@@ -16,7 +16,10 @@
             <tr>
                 <td>{{$val["id"]}}</td>
                 <td>{{$val["name"]}}</td>
-                <td></td>
+                <td>
+                    <a href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@editorView',["id"=>$val["id"]]) }}" class="btn btn-warning btn-sm">编辑</a>
+                    <a href="{{ URL::action(\App\Utils\ConstantUtil::PROJECT_ADMIN.'\ClassifyController@delete',["id"=>$val["id"]]) }}" class="btn btn-danger btn-sm ">删除</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

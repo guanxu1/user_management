@@ -13,20 +13,22 @@ use Session;
 use DB;
 Class ModulesController extends Controller {
 
-
-
-
     public function select(Request $request) {
 
         $id = $request->input("id");
         if(empty($id))  FunctionController::errorView(URL::action(ConstantUtil::PROJECT_ADMIN.'\IndexController@index'),'请选择正确模块！');
         $url = Modules::where("id","=",$id)->pluck("url");
         if(strstr("@",$url))  FunctionController::errorView(URL::action(ConstantUtil::PROJECT_ADMIN.'\IndexController@index'),'请确认路由已注册该URL！');
+        $session_modules = Session::get("modules");
+        if(!empty($session_modules["function"])) {
+            $request_uri = URL::action(ConstantUtil::PROJECT_ADMIN.'\\'.$url);
+            if(!in_array($request_uri,$session_modules["function"])) FunctionController::errorView(URL::action(ConstantUtil::PROJECT_ADMIN.'\LoginController@login'),'请登录！');
+        }
         $modules    = explode("@",$url);
         $class      = "App\\Http\\Controllers\\".ConstantUtil::PROJECT_ADMIN."\\".$modules[0];
         $function   = $modules[1];
         $obj = new $class();
-        Session::put("select",$modules);
+        Session::put("select",$id);
         Session::save();
         return $obj->$function($request);
     }
@@ -136,6 +138,12 @@ Class ModulesController extends Controller {
         foreach($role_user as $val) {
             $role_relation      = RoleRelation::where("role_id",$val["role_id"])->lists("modules_func_id")->toArray();
             $modules_id         = ModulesFunc::select(DB::raw("distinct(modules_id) as modules_id"))->whereIn("id",$role_relation)->lists("modules_id")->toArray();
+            $modules_function  = Modules::whereIn("id",$modules_id)->lists("url")->toArray();
+            foreach($modules_function as $val) {
+                $url = URL::action(ConstantUtil::PROJECT_ADMIN."\\".$val);
+                if(empty($url)) continue;
+                $result["function"][] = $url;
+            }
             $function           = ModulesFunc::whereIn("id",$role_relation)->lists("url")->toArray();
             foreach($function as $val) {
                 $url = URL::action(ConstantUtil::PROJECT_ADMIN."\\".$val);
